@@ -1,0 +1,240 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 8px;
+    font-weight: 400;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.form-section {
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e7e7e7;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label,
+.form-group legend {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 400;
+}
+
+.form-group small {
+    font-size: 0.85em;
+    color: #777;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    font-size: 1em;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.term-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.term-inputs input[type="number"] {
+    flex-grow: 1;
+}
+
+.term-inputs select {
+    width: auto;
+    flex-basis: 120px;
+}
+
+.radio-group legend {
+    font-size: 1em; /* Match label font size */
+    padding: 0;
+    border: 0;
+}
+
+.radio-group div {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #007bff;
+}
+
+.radio-group label {
+    margin-bottom: 0; /* Override default label margin */
+    font-weight: normal;
+}
+
+.radio-group div.disabled label {
+    color: #aaa;
+    /* text-decoration: line-through; */ /* Removing line-through for better UX, disabled state is clear */
+}
+
+.radio-group div.disabled input[type="radio"] {
+    cursor: not-allowed;
+}
+
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.results-section {
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.results-section h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-label {
+    color: #555;
+}
+
+.result-value {
+    color: #333;
+    font-weight: 700;
+}
+
+.result-item.summary-save .result-value {
+    color: #28a745; /* Green for savings */
+    font-size: 1.1em;
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.flash {
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.flash.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flash.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.chart-container {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.chart-container h3 {
+    color: #34495e;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.chart-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    max-width: 400px;
+    margin: 0 auto;
+}
