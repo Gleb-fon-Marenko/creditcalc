@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор досрочного погашения кредита (JS)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Калькулятор досрочного погашения кредита</h1>
+
+        <div id="flash-messages" class="flash-messages"></div>
+
+        <form id="calculator-form">
+            <div class="form-grid">
+                <div class="form-section">
+                    <h2>Параметры кредита</h2>
+                    <div class="form-group">
+                        <label for="balance">Остаток по кредиту (руб):</label>
+                        <input type="text" inputmode="decimal" name="balance" id="balance" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rate">Годовая ставка (%):</label>
+                        <input type="number" step="0.01" name="rate" id="rate" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="term_value">Оставшийся срок:</label>
+                        <div class="term-inputs">
+                            <input type="number" step="1" name="term_value" id="term_value" value="" required>
+                            <select name="term_unit" id="term_unit">
+                                <option value="months" selected>Месяцы</option>
+                                <option value="years">Годы</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="current_payment">Текущий ежемес. платеж (руб) <small>(если известен)</small>:</label>
+                        <input type="number" step="0.01" name="current_payment" id="current_payment" value="">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>Досрочное погашение</h2>
+                    <div class="form-group">
+                        <label for="extra_payment_amount">Сумма досрочного платежа (руб):</label>
+                        <input type="text" inputmode="decimal" name="extra_payment_amount" id="extra_payment_amount" value="" required>
+                    </div>
+                    <fieldset class="form-group radio-group">
+                        <legend>Тип досрочного платежа:</legend>
+                        <div>
+                            <input type="radio" name="extra_payment_type" id="one-time" value="one-time" checked>
+                            <label for="one-time">Разовый</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="extra_payment_type" id="recurring" value="recurring">
+                            <label for="recurring">Ежемесячный (дополнительно)</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="extra_payment_type" id="recurring_n_months" value="recurring_n_months">
+                            <label for="recurring_n_months">N месяцев подряд</label>
+                        </div>
+                    </fieldset>
+                    <div class="form-group" id="n_months_input_group" style="display: none;">
+                        <label for="n_months_recurring_count">Количество месяцев (N):</label>
+                        <input type="number" step="1" min="1" name="n_months_recurring_count" id="n_months_recurring_count" value="1">
+                    </div>
+                    <fieldset class="form-group radio-group">
+                        <legend>Цель погашения:</legend>
+                        <div>
+                            <input type="radio" name="goal" id="reduce_term" value="reduce_term" checked>
+                            <label for="reduce_term">Сокращение срока</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="goal" id="reduce_payment" value="reduce_payment">
+                            <label for="reduce_payment">Уменьшение платежа</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <button type="submit" class="submit-button">Рассчитать</button>
+        </form>
+
+        <div id="results-section" class="results-section" style="display: none;">
+            <h2>Результаты расчета</h2>
+            <div class="result-item">
+                <span class="result-label">Расчетный исходный платеж (если не был указан):</span> 
+                <span class="result-value" id="result-original-calculated-payment">-</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Новый ежемесячный платеж:</span> 
+                <span class="result-value" id="result-new-monthly-payment">-</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Новый срок кредита:</span> 
+                <span class="result-value" id="result-new-term">-</span>
+            </div>
+            <hr>
+            <div class="result-item">
+                <span class="result-label">Старая общая переплата (проценты):</span> 
+                <span class="result-value" id="result-old-total-interest">-</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Новая общая переплата (проценты):</span> 
+                <span class="result-value" id="result-new-total-interest">-</span>
+            </div>
+            <div class="result-item summary-save">
+                <span class="result-label">Экономия на процентах:</span> 
+                <span class="result-value" id="result-interest-saved">-</span>
+            </div>
+            <div class="chart-container">
+                <h3>Структура кредита</h3>
+                <div class="chart-wrapper">
+                    <canvas id="loanChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
