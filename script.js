@@ -273,6 +273,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let N_new_months_calc = N_months_original;
         let M_new_scheduled = M_baseline;
         let Total_Paid_New = 0;
+        let P_remaining_after_N = P_current;
+        let actual_n_months_paid = 0;
 
         if (extra_payment_type === "one-time" && E_extra >= P_current) {
             Total_Paid_New = P_current; // Amount paid towards principal
@@ -319,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Total_Paid_New = M_effective * Math.ceil(N_new_months_calc === Infinity ? 0 : N_new_months_calc);
         
         } else if (extra_payment_type === "recurring_n_months") {
-            let P_remaining_after_N = P_current;
+            P_remaining_after_N = P_current;
             let Total_Paid_During_N_Period = 0;
             const M_effective_N = M_baseline + E_extra;
 
@@ -327,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayFlashMessage(`Платеж ${formatCurrency(M_effective_N)} недостаточен для покрытия процентов в период N платежей.`, "error");
                 return;
             }
-            let actual_n_months_paid = 0;
+            actual_n_months_paid = 0;
             for (let i = 0; i < n_months_for_recurring; i++) {
                 if (P_remaining_after_N <= 0.01) break;
                 actual_n_months_paid++;
@@ -401,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // The total term is actual_n_months_paid + N_new_months_calc (if N_new_months_calc is not Infinity and loan not paid off in N)
             if (P_remaining_after_N > 0 && N_new_months_calc !== Infinity) {
                  term_display_val = actual_n_months_paid + N_new_months_calc;
-            } else if (P_remaining_after_N <=0) { // Paid off within N months
+            } else if (P_remaining_after_N <= 0) { // Paid off within N months
                  term_display_val = actual_n_months_paid;
             } else { // Not paid off after N, and calculation for after N failed
                  term_display_val = Infinity; // Or show something like 'N + не погашается'
@@ -415,6 +417,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Create or update the pie chart
         updateLoanChart(P_current, Total_Interest_New);
+        
+        // Make sure the results section is visible
+        document.getElementById('results-section').style.display = 'block';
 
         if (Interest_Saved > 0) {
             displayFlashMessage(`Отлично! Вы сэкономите ${formatCurrency(Interest_Saved)} на процентах.`, 'success');
