@@ -1,9 +1,10 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f7f6;
-    color: #333;
+    color: #212121; /* Updated main text color */
     margin: 0;
     padding: 20px;
+    font-size: 16px; /* Base font size */
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -20,19 +21,21 @@ body {
 }
 
 h1 {
-    color: #2c3e50;
+    color: #2E7D32; /* New primary green */
     text-align: center;
     margin-bottom: 30px;
     font-weight: 700;
+    font-size: 2.4em; /* Adjusted font size */
 }
 
 h2 {
-    color: #34495e;
+    color: #212121; /* Updated main text color */
     margin-top: 20px;
     margin-bottom: 15px;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 2px solid #DDDDDD; /* Updated border color */
     padding-bottom: 8px;
-    font-weight: 400;
+    font-weight: 500; /* Adjusted font weight */
+    font-size: 1.8em; /* Adjusted font size */
 }
 
 .form-grid {
@@ -43,10 +46,10 @@ h2 {
 }
 
 .form-section {
-    background-color: #fdfdfd;
+    background-color: #FFFFFF; /* Updated section background */
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #e7e7e7;
+    border: 1px solid #DDDDDD; /* Updated border color */
 }
 
 .form-group {
@@ -57,13 +60,13 @@ h2 {
 .form-group legend {
     display: block;
     margin-bottom: 8px;
-    color: #555;
-    font-weight: 400;
+    color: #555555; /* Updated secondary text color */
+    font-weight: 500; /* Adjusted font weight */
 }
 
 .form-group small {
     font-size: 0.85em;
-    color: #777;
+    color: #757575; /* Lighter grey for help text */
 }
 
 input[type="number"],
@@ -71,19 +74,21 @@ input[type="text"],
 select {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #DDDDDD; /* Updated border color */
     border-radius: 6px;
     box-sizing: border-box;
     transition: border-color 0.3s ease;
     font-size: 1em;
+    color: #212121; /* Ensure input text uses main text color */
+    background-color: #FFFFFF; /* Explicitly set background to white */
 }
 
 input[type="number"]:focus,
 input[type="text"]:focus,
 select:focus {
-    border-color: #007bff;
+    border-color: #2E7D32; /* New primary green */
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.25); /* Adjusted shadow to match new primary */
 }
 
 .term-inputs {
@@ -100,6 +105,12 @@ select:focus {
     flex-basis: 120px;
 }
 
+fieldset { /* Reset default fieldset styling */
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
 .radio-group legend {
     font-size: 1em; /* Match label font size */
     padding: 0;
@@ -114,7 +125,7 @@ select:focus {
 
 .radio-group input[type="radio"] {
     margin-right: 10px;
-    accent-color: #007bff;
+    accent-color: #2E7D32; /* New primary green */
 }
 
 .radio-group label {
@@ -136,7 +147,7 @@ select:focus {
     display: block;
     width: 100%;
     padding: 15px;
-    background-color: #007bff;
+    background-color: #2E7D32; /* New primary green */
     color: white;
     border: none;
     border-radius: 6px;
@@ -144,31 +155,31 @@ select:focus {
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 10px;
+    margin-top: 30px; /* Increased top margin for better separation */
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
+    background-color: #1B5E20; /* Darker green for hover */
 }
 
 .results-section {
     margin-top: 30px;
-    background-color: #f9f9f9;
+    background-color: #FFFFFF; /* Updated section background */
     padding: 25px;
     border-radius: 8px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #DDDDDD; /* Updated border color */
 }
 
 .results-section h2 {
     margin-top: 0;
-    color: #2c3e50;
+    color: #212121; /* Updated main text color */
 }
 
 .result-item {
     display: flex;
     justify-content: space-between;
     padding: 12px 0;
-    border-bottom: 1px dashed #ddd;
+    border-bottom: 1px solid #DDDDDD; /* Updated border to solid */
 }
 
 .result-item:last-child {
@@ -176,16 +187,17 @@ select:focus {
 }
 
 .result-label {
-    color: #555;
+    color: #555555; /* Updated secondary text color */
+    font-weight: 400; /* Adjusted font weight */
 }
 
 .result-value {
-    color: #333;
+    color: #212121; /* Updated main text color */
     font-weight: 700;
 }
 
 .result-item.summary-save .result-value {
-    color: #28a745; /* Green for savings */
+    color: #28a745; /* Specific success green */
     font-size: 1.1em;
 }
 
@@ -222,13 +234,15 @@ select:focus {
 .chart-container {
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #DDDDDD; /* Updated border color */
 }
 
 .chart-container h3 {
-    color: #34495e;
+    color: #212121; /* Updated main text color */
     margin-bottom: 15px;
     text-align: center;
+    font-size: 1.4em; /* Adjusted font size */
+    font-weight: 500; /* Adjusted font weight */
 }
 
 .chart-wrapper {
@@ -237,4 +251,10 @@ select:focus {
     height: 300px;
     max-width: 400px;
     margin: 0 auto;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #DDDDDD;
+    margin: 20px 0;
 }
