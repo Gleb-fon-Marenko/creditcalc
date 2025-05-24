@@ -36,21 +36,24 @@
                     <h2>Параметры кредита</h2>
                     <div class="form-group">
                         <label for="balance">Остаток по кредиту (руб):</label>
-                        <input type="text" inputmode="decimal" name="balance" id="balance" value="" required>
+                        <input type="text" inputmode="decimal" name="balance" id="balance" value="" required aria-describedby="balance-error">
+                        <span id="balance-error" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="rate">Годовая ставка (%):</label>
-                        <input type="number" step="0.01" name="rate" id="rate" value="" required>
+                        <input type="number" step="0.01" min="0.01" name="rate" id="rate" value="" required aria-describedby="rate-error">
+                        <span id="rate-error" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="term_value">Оставшийся срок:</label>
                         <div class="term-inputs">
-                            <input type="number" step="1" name="term_value" id="term_value" value="" required>
+                            <input type="number" step="1" min="1" name="term_value" id="term_value" value="" required aria-describedby="term_value-error">
                             <select name="term_unit" id="term_unit">
                                 <option value="months" selected>Месяцы</option>
                                 <option value="years">Годы</option>
                             </select>
                         </div>
+                        <span id="term_value-error" class="error-message"></span>
                     </div>
                    
                 </div>
@@ -59,7 +62,10 @@
                     <h2>Досрочное погашение</h2>
                     <div class="form-group">
                         <label for="extra_payment_amount">Сумма досрочного платежа (руб):</label>
-                        <input type="text" inputmode="decimal" name="extra_payment_amount" id="extra_payment_amount" value="" required>
+                        <input type="text" inputmode="decimal" name="extra_payment_amount" id="extra_payment_amount" value="" required min="0" aria-describedby="extra_payment_amount-error">
+                        <input type="range" id="extra_payment_amount_slider" name="extra_payment_amount_slider" class="dynamic-slider">
+                        <span id="extra_payment_amount_slider_value" class="slider-value-display"></span>
+                        <span id="extra_payment_amount-error" class="error-message"></span>
                     </div>
                     <fieldset class="form-group radio-group">
                         <legend>Тип досрочного платежа:</legend>
@@ -78,7 +84,8 @@
                     </fieldset>
                     <div class="form-group" id="n_months_input_group" style="display: none;">
                         <label for="n_months_recurring_count">Количество месяцев (N):</label>
-                        <input type="number" step="1" min="1" name="n_months_recurring_count" id="n_months_recurring_count" value="1">
+                        <input type="number" step="1" min="1" name="n_months_recurring_count" id="n_months_recurring_count" value="1" aria-describedby="n_months_recurring_count-error">
+                        <span id="n_months_recurring_count-error" class="error-message"></span>
                     </div>
                     <fieldset class="form-group radio-group">
                         <legend>Цель погашения:</legend>
@@ -94,6 +101,7 @@
                 </div>
             </div>
             <button type="submit" class="submit-button">Рассчитать</button>
+            <button type="button" id="save-scenario-button" class="submit-button secondary-button" style="display: none; margin-top: 10px;">Сохранить этот сценарий</button>
         </form>
 
         <div id="results-section" class="results-section" style="display: none;">
@@ -127,6 +135,124 @@
                 <h3>Структура кредита</h3>
                 <div class="chart-wrapper">
                     <canvas id="loanChart"></canvas>
+                </div>
+            </div>
+            <div class="results-actions" style="display: none; margin-top: 30px; padding-top:20px; border-top: 1px solid var(--border-color); display: flex; gap: 15px; justify-content: center;">
+                <button id="print-results-button" class="submit-button utility-button">Печать результатов</button>
+                <button id="export-csv-button" class="submit-button utility-button">Экспорт графиков в CSV</button>
+            </div>
+        </div>
+
+        <!-- This is the first, correct instance -->
+        <div id="amortization-schedules" class="amortization-schedules-section" style="display: none;">
+            <h2>Детализированный график платежей</h2>
+            <div class="schedule-tabs">
+                <button class="tab-button active" onclick="showSchedule('original', this)">Исходный график</button>
+                <button class="tab-button" onclick="showSchedule('new', this)">Новый график (с досрочным погашением)</button>
+            </div>
+            <div id="original-schedule-display" class="schedule-display active">
+                <h3>Исходный график платежей</h3>
+                <table id="original-schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Месяц</th>
+                            <th>Платеж</th>
+                            <th>Проценты</th>
+                            <th>Основной долг</th>
+                            <th>Остаток долга</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="new-schedule-display" class="schedule-display">
+                <h3>Новый график платежей</h3>
+                <table id="new-schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Месяц</th>
+                            <th>Платеж</th>
+                            <th>Проценты</th>
+                            <th>Основной долг</th>
+                            <th>Остаток долга</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REMOVE THE DUPLICATED AMORTIZATION SCHEDULES SECTION BELOW -->
+        <!-- 
+        <div id="amortization-schedules" class="amortization-schedules-section" style="display: none;">
+            <h2>Детализированный график платежей</h2>
+            <div class="schedule-tabs">
+                <button class="tab-button active" onclick="showSchedule('original', this)">Исходный график</button>
+                <button class="tab-button" onclick="showSchedule('new', this)">Новый график (с досрочным погашением)</button>
+            </div>
+            <div id="original-schedule-display" class="schedule-display active">
+                <h3>Исходный график платежей</h3>
+                <table id="original-schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Месяц</th>
+                            <th>Платеж</th>
+                            <th>Проценты</th>
+                            <th>Основной долг</th>
+                            <th>Остаток долга</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="new-schedule-display" class="schedule-display">
+                <h3>Новый график платежей</h3>
+                <table id="new-schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Месяц</th>
+                            <th>Платеж</th>
+                            <th>Проценты</th>
+                            <th>Основной долг</th>
+                            <th>Остаток долга</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+        -->
+
+        <div id="comparison-section" style="display: none;">
+            <div id="saved-scenarios-container" style="display: none;">
+                <h2>Сохраненные сценарии <span id="scenario-count-display">(0/3)</span></h2>
+                <div id="saved-scenarios-list">
+                    <!-- Saved scenarios will be rendered here by JavaScript -->
+                </div>
+            </div>
+            <div id="comparison-display-area" style="display: none;">
+                <h3>Сравнение сценариев</h3>
+                <div class="comparison-layout">
+                    <div id="current-scenario-comparison" class="comparison-column">
+                        <h4>Текущий расчет</h4>
+                        <div class="comparison-details">
+                            <!-- Details for current scenario -->
+                        </div>
+                    </div>
+                    <div id="saved-scenario-comparison" class="comparison-column">
+                        <h4>Сохраненный сценарий</h4>
+                        <div class="comparison-details">
+                            <!-- Details for saved scenario -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

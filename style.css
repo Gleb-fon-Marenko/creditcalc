@@ -1,7 +1,32 @@
+:root {
+    --primary-color: #0A58CA; /* Modern Blue */
+    --secondary-color: #6c757d; /* Lighter Blue/Grey */
+    --accent-color: #20c997; /* Vibrant Teal */
+    --background-color: #f8f9fa; /* Light Grey/Off-White */
+    --text-color: #212529; /* Dark Grey for body text */
+    --secondary-text-color: #495057; /* Slightly lighter grey for secondary text */
+    --container-bg-color: #ffffff; /* White for container background */
+    --border-color: #CED4DA; /* Light grey for borders */
+
+    /* Status Colors */
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --success-color: #198754; /* Darker, more traditional green for success */
+
+    --danger-text-emphasis: #721c24; /* For text on subtle backgrounds */
+    --warning-text-emphasis: #664d03; /* For text on subtle backgrounds */
+    --success-text-emphasis: #0f5132; /* For text on subtle backgrounds */
+
+    --danger-bg-subtle: #f8d7da;
+    --warning-bg-subtle: #fff3cd;
+    --success-bg-subtle: #d1e7dd;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f7f6;
-    color: #212121; /* Updated main text color */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-weight: 400;
     margin: 0;
     padding: 20px;
     font-size: 16px; /* Base font size */
@@ -12,30 +37,30 @@ body {
 }
 
 .container {
-    background-color: #ffffff;
+    background-color: var(--container-bg-color);
     padding: 30px 40px;
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); /* More subtle shadow */
     width: 100%;
-    max-width: 800px;
+    max-width: 900px; /* Increased max-width */
 }
 
 h1 {
-    color: #2E7D32; /* New primary green */
+    color: var(--primary-color); /* New primary blue */
     text-align: center;
     margin-bottom: 30px;
     font-weight: 700;
-    font-size: 2.4em; /* Adjusted font size */
+    font-size: 2.5em; /* Adjusted font size for hierarchy */
 }
 
 h2 {
-    color: #212121; /* Updated main text color */
+    color: var(--primary-color); /* Changed to primary color */
     margin-top: 20px;
     margin-bottom: 15px;
-    border-bottom: 2px solid #DDDDDD; /* Updated border color */
+    border-bottom: 2px solid var(--border-color); /* Updated border color */
     padding-bottom: 8px;
-    font-weight: 500; /* Adjusted font weight */
-    font-size: 1.8em; /* Adjusted font size */
+    font-weight: 500;
+    font-size: 1.9em; /* Adjusted font size for hierarchy */
 }
 
 .form-grid {
@@ -46,10 +71,10 @@ h2 {
 }
 
 .form-section {
-    background-color: #FFFFFF; /* Updated section background */
+    background-color: var(--container-bg-color); /* Use variable */
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #DDDDDD; /* Updated border color */
+    border: 1px solid var(--border-color); /* Use variable */
 }
 
 .form-group {
@@ -60,13 +85,13 @@ h2 {
 .form-group legend {
     display: block;
     margin-bottom: 8px;
-    color: #555555; /* Updated secondary text color */
+    color: var(--secondary-text-color); /* Use variable */
     font-weight: 500; /* Adjusted font weight */
 }
 
 .form-group small {
     font-size: 0.85em;
-    color: #757575; /* Lighter grey for help text */
+    color: var(--secondary-color); /* Use variable for help text */
 }
 
 input[type="number"],
@@ -74,21 +99,21 @@ input[type="text"],
 select {
     width: 100%;
     padding: 12px;
-    border: 1px solid #DDDDDD; /* Updated border color */
+    border: 1px solid var(--border-color); /* Use variable */
     border-radius: 6px;
     box-sizing: border-box;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Standard transition */
     font-size: 1em;
-    color: #212121; /* Ensure input text uses main text color */
-    background-color: #FFFFFF; /* Explicitly set background to white */
+    color: var(--text-color); /* Use variable */
+    background-color: var(--container-bg-color); /* Use variable */
 }
 
 input[type="number"]:focus,
 input[type="text"]:focus,
 select:focus {
-    border-color: #2E7D32; /* New primary green */
+    border-color: var(--primary-color); /* Use variable */
     outline: none;
-    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.25); /* Adjusted shadow to match new primary */
+    box-shadow: 0 0 0 2px rgba(10, 88, 202, 0.25); /* Adjusted shadow to match new primary */
 }
 
 .term-inputs {
@@ -125,7 +150,7 @@ fieldset { /* Reset default fieldset styling */
 
 .radio-group input[type="radio"] {
     margin-right: 10px;
-    accent-color: #2E7D32; /* New primary green */
+    accent-color: var(--primary-color); /* Use variable */
 }
 
 .radio-group label {
@@ -134,7 +159,7 @@ fieldset { /* Reset default fieldset styling */
 }
 
 .radio-group div.disabled label {
-    color: #aaa;
+    color: var(--secondary-color); /* Use a defined grey for disabled text */
     /* text-decoration: line-through; */ /* Removing line-through for better UX, disabled state is clear */
 }
 
@@ -147,39 +172,39 @@ fieldset { /* Reset default fieldset styling */
     display: block;
     width: 100%;
     padding: 15px;
-    background-color: #2E7D32; /* New primary green */
+    background-color: var(--primary-color); /* Use variable */
     color: white;
     border: none;
     border-radius: 6px;
     font-size: 1.1em;
     font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.15s ease-in-out; /* Standard transition */
     margin-top: 30px; /* Increased top margin for better separation */
 }
 
 .submit-button:hover {
-    background-color: #1B5E20; /* Darker green for hover */
+    background-color: #084BA0; /* Darker shade of primary blue for hover */
 }
 
 .results-section {
     margin-top: 30px;
-    background-color: #FFFFFF; /* Updated section background */
+    background-color: var(--container-bg-color); /* Use variable */
     padding: 25px;
     border-radius: 8px;
-    border: 1px solid #DDDDDD; /* Updated border color */
+    border: 1px solid var(--border-color); /* Use variable */
 }
 
 .results-section h2 {
     margin-top: 0;
-    color: #212121; /* Updated main text color */
+    color: var(--primary-color); /* Use primary color for heading as per subtask */
 }
 
 .result-item {
     display: flex;
     justify-content: space-between;
     padding: 12px 0;
-    border-bottom: 1px solid #DDDDDD; /* Updated border to solid */
+    border-bottom: 1px solid var(--border-color); /* Use variable */
 }
 
 .result-item:last-child {
@@ -187,17 +212,18 @@ fieldset { /* Reset default fieldset styling */
 }
 
 .result-label {
-    color: #555555; /* Updated secondary text color */
+    color: var(--secondary-text-color); /* Use variable */
     font-weight: 400; /* Adjusted font weight */
 }
 
 .result-value {
-    color: #212121; /* Updated main text color */
+    color: var(--text-color); /* Use variable */
     font-weight: 700;
 }
 
+/* "Interest Saved" Highlight */
 .result-item.summary-save .result-value {
-    color: #28a745; /* Specific success green */
+    color: var(--success-color); /* Use dedicated success color for positive outcome */
     font-size: 1.1em;
 }
 
@@ -214,31 +240,31 @@ fieldset { /* Reset default fieldset styling */
 }
 
 .flash.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: var(--danger-bg-subtle);
+    color: var(--danger-text-emphasis);
+    border: 1px solid var(--danger-color);
 }
 
 .flash.warning {
-    background-color: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeeba;
+    background-color: var(--warning-bg-subtle);
+    color: var(--warning-text-emphasis);
+    border: 1px solid var(--warning-color);
 }
 
 .flash.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: var(--success-bg-subtle);
+    color: var(--success-text-emphasis);
+    border: 1px solid var(--success-color);
 }
 
 .chart-container {
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid #DDDDDD; /* Updated border color */
+    border-top: 1px solid var(--border-color); /* Use variable */
 }
 
 .chart-container h3 {
-    color: #212121; /* Updated main text color */
+    color: var(--text-color); /* Use variable */
     margin-bottom: 15px;
     text-align: center;
     font-size: 1.4em; /* Adjusted font size */
@@ -255,6 +281,401 @@ fieldset { /* Reset default fieldset styling */
 
 hr {
     border: none;
-    border-top: 1px solid #DDDDDD;
+    border-top: 1px solid var(--border-color); /* Use variable */
     margin: 20px 0;
+}
+
+/* Amortization Schedule Styles */
+.amortization-schedules-section {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: var(--container-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.amortization-schedules-section h2 { /* Match other h2 in results */
+    margin-top: 0;
+    color: var(--primary-color); 
+    margin-bottom: 20px; /* Increased margin for separation */
+}
+
+.amortization-schedules-section h3 { /* For individual table titles */
+    color: var(--text-color);
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* Validation Styles */
+/* --bs-danger-rgb is defined in the main :root block at the top */
+
+.error-message {
+    display: block; /* Or inline-block if preferred for layout */
+    width: 100%; /* Ensure it takes full width to not mess up layout if below input */
+    margin-top: 4px;
+    font-size: 0.875em;
+    color: var(--danger-color);
+}
+
+input.is-invalid {
+    border-color: var(--danger-color) !important; /* Important to override other border styles */
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25);
+}
+
+/* Ensure invalid focus doesn't revert to default focus color if it's different */
+input.is-invalid:focus {
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25);
+}
+
+/* Adjust for select if it ever gets validation styling */
+select.is-invalid {
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25);
+}
+select.is-invalid:focus {
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25);
+}
+
+/* Utility Buttons (Print/Export) */
+.utility-button {
+    background-color: var(--secondary-color); /* Greyish-blue from palette */
+    color: white; /* Ensure good contrast */
+}
+.utility-button:hover {
+    background-color: #545b62; /* Darker shade of secondary */
+}
+
+
+/* Print-Specific Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    /* Define what IS printable */
+    .container, /* Make the main container visible, but control children */
+    #results-section, #results-section *,
+    #amortization-schedules, #amortization-schedules *,
+    .chart-container, .chart-container * /* Ensure chart is part of printable if desired */
+    {
+        visibility: visible;
+    }
+    
+    .container {
+        position: static !important; /* Override any absolute positioning for print */
+        width: 100% !important;
+        max-width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Elements to completely remove from layout and print */
+    #calculator-form,
+    .flash-messages,
+    #save-scenario-button,
+    .results-actions, /* Hide print/export buttons themselves in print */
+    .schedule-tabs button:not(.active), /* Hide inactive tab buttons */
+    .schedule-display:not(.active), /* Hide inactive schedule displays */
+    #comparison-section,
+    .footer /* Assuming there might be a footer, good to hide */
+     {
+        display: none !important;
+    }
+    
+    h1, h2, h3 { /* Ensure headings are black for print */
+        color: #000 !important;
+    }
+
+    /* General print adjustments */
+    body {
+        font-size: 10pt;
+        background-color: #fff !important;
+        color: #000 !important;
+        margin: 20px !important; /* Add some margin for printing */
+    }
+
+    #results-section, 
+    #amortization-schedules,
+    .schedule-tabs,
+    .amortization-schedules-section table {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important; /* Simple border for print */
+        margin-top: 15px !important;
+        padding: 10px !important;
+    }
+    
+    .schedule-tabs button.active { /* Style active tab for print */
+        border-bottom: 2px solid #000 !important;
+        color: #000 !important;
+    }
+
+    .result-item,
+    .amortization-schedules-section th, 
+    .amortization-schedules-section td {
+        border: 1px solid #ccc !important;
+        padding: 5px !important; /* Reduce padding for print */
+    }
+    
+    .chart-wrapper canvas { /* Ensure canvas is constrained */
+        max-width: 100% !important;
+        max-height: 250px !important; /* Adjust as needed */
+    }
+
+    /* Remove backgrounds from specific elements if they persist */
+    .saved-scenario-item, .comparison-column, .amortization-schedules-section th {
+        background-color: #fff !important;
+    }
+}
+
+
+.schedule-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: transparent; /* Was var(--container-bg-color) */
+    border: none; /* Was 1px solid var(--border-color) */
+    border-bottom: 2px solid transparent; /* For active state */
+    border-radius: 6px 6px 0 0; /* Rounded top corners */
+    font-size: 1em;
+    color: var(--secondary-text-color); /* Lighter text for inactive tabs */
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-bottom-color 0.15s ease-in-out;
+    margin-bottom: -2px; /* Overlap with the container's border-bottom */
+}
+
+.tab-button:hover {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color); /* Subtle hover indicator */
+}
+
+.tab-button.active {
+    background-color: var(--container-bg-color); /* Keep it clean */
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: 500;
+}
+
+.schedule-display {
+    display: none; /* Hidden by default, JS will show active */
+}
+
+.schedule-display.active {
+    display: block; /* Shown by JS */
+}
+
+.amortization-schedules-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.95em; /* Slightly smaller font for dense tables */
+}
+
+.amortization-schedules-section th,
+.amortization-schedules-section td {
+    border: 1px solid var(--border-color);
+    padding: 10px; /* Increased padding for readability */
+    text-align: right;
+}
+
+.amortization-schedules-section th {
+    background-color: var(--background-color); /* Light grey page background for headers */
+    font-weight: 500; /* Was 700, softened */
+    color: var(--text-color);
+    text-align: center; /* Center align header text */
+}
+
+.amortization-schedules-section td:first-child { /* Month column */
+    text-align: center; 
+}
+
+
+.amortization-schedules-section tbody tr:nth-child(even) {
+    background-color: var(--background-color); /* Using the page background for striping */
+}
+
+.amortization-schedules-section tbody tr:hover {
+    background-color: #e9ecef; /* A slightly darker hover, define as var if used elsewhere */
+}
+
+/* Scenario Comparison Styles */
+.submit-button.secondary-button {
+    background-color: var(--accent-color);
+    color: var(--container-bg-color); /* Ensure good contrast, typically white/light */
+}
+.submit-button.secondary-button:hover {
+    background-color: #1ca882; /* Darker shade of accent */
+}
+
+#comparison-section {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: var(--container-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+#comparison-section h2,
+#comparison-section h3 { /* Match other section headings */
+    margin-top: 0;
+    color: var(--primary-color); 
+    margin-bottom: 20px;
+}
+#comparison-section h3 { /* More specific for comparison sub-heading */
+    font-size: 1.7em; /* Slightly smaller than main section h2 */
+}
+
+
+#saved-scenarios-container {
+    margin-bottom: 30px; /* Space before comparison display area if both are shown */
+}
+
+#scenario-count-display {
+    font-size: 0.9em;
+    color: var(--secondary-text-color);
+    font-weight: normal;
+}
+
+#saved-scenarios-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.saved-scenario-item {
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 6px;
+    background-color: var(--background-color); /* Page background for slight contrast */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.scenario-title {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    display: block;
+    font-size: 1.1em;
+}
+
+.scenario-summary p {
+    margin-bottom: 6px;
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+.scenario-summary p:last-child {
+    margin-bottom: 0;
+}
+
+.scenario-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.scenario-actions button {
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.compare-btn {
+    background-color: var(--accent-color);
+    color: var(--container-bg-color); /* Assuming accent is dark enough for light text */
+    border: 1px solid var(--accent-color);
+}
+.compare-btn:hover {
+    background-color: #1ca882; /* Darker accent */
+    border-color: #1ca882;
+}
+
+.remove-btn {
+    background-color: var(--danger-bg-subtle);
+    color: var(--danger-text-emphasis); /* Use the stronger text color for buttons */
+    border: 1px solid var(--danger-color);
+}
+.remove-btn:hover {
+    background-color: #f5c6cb; /* Slightly darker subtle danger */
+    border-color: #c82333; /* Darker danger border */
+}
+
+
+#comparison-display-area {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--border-color); /* More prominent separator */
+}
+
+.comparison-layout {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.comparison-column {
+    flex: 1;
+    min-width: 280px; /* Ensure columns don't get too squished */
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--background-color); /* Page background for contrast */
+}
+
+.comparison-column h4 {
+    color: var(--primary-color);
+    font-size: 1.3em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.comparison-details p {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-details p strong {
+    color: var(--secondary-text-color);
+}
+.comparison-details hr { /* Ensure hr inside comparison details is styled */
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 15px 0;
+}
+
+/* Dynamic Slider Styles */
+.dynamic-slider {
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    /* Basic accenting, browser defaults will mostly apply */
+    accent-color: var(--primary-color); 
+}
+
+.slider-value-display {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    color: var(--secondary-text-color);
+    font-size: 0.9em;
+    font-weight: 500;
 }
